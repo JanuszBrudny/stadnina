@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+ul,ol,li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
