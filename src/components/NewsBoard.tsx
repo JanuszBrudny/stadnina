@@ -21,7 +21,8 @@ interface NewsItem {
 
 async function getNews(): Promise<NewsItem[]> {
 	// W zapytaniu upewniamy się, że pobieramy potrzebne pola
-	return await client.fetch(`
+	return await client.fetch(
+		`
     *[_type == "news"] | order(publishedAt desc) {
       _id,
       title,
@@ -29,7 +30,14 @@ async function getNews(): Promise<NewsItem[]> {
       mainImage,
       content
     }
-  `)
+  `,
+		{},
+		{
+			next: {
+				revalidate: 10,
+			},
+		},
+	)
 }
 
 export default async function NewsBoard() {
